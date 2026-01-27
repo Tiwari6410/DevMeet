@@ -16,9 +16,10 @@ localhost:3000/a(bc)?d = abcd / ad (it will work, it is saying bc is optional )
 
 localhost:3000/a(bc)+ d = abcd / abcbcbcd (it will work, it is saying repeatation of bc inbetween ad can work )
 
-try this regEx as well : /a/ (means : if routes contains a then it will work
+try this regEx as well : 
+=  /a/ (means : if routes contains "a" then it will work
 
-    		: "/.*fly$/ (means : if routes contains fly at the end of the word it will work that routes )
+= "/.*fly$/ (means : if routes contains fly at the end of the word it will work that routes )
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Query params (how we can send through api +++++++++++++
 
@@ -30,7 +31,6 @@ so we can get it through the controller user : req.query
 app.get("/user", (req,res)=>{
 console.log(req.query) // it will return all value like a object
 res.send("server returning the response please check")
-
 })
 
 +++++++++++++++++++++++++++++++++++++++++++++ DYNAMIC Routes +++++++++++++++++++++++++++++++++++++++++++++++++++
