@@ -1,1 +1,0 @@
-console.log("hello are you available for talk")
