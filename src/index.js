@@ -1,25 +1,62 @@
+
 const express = require("express")
-const {adminAuth, userAuth} = require("./middleware/auth")
 const app = express()
 
-app.use("/admin",adminAuth)
 
-app.get("/user",userAuth,(req, res)=>{
-    res.send("Collection of userdata is collected")
+//handling error by using try catch
+app.use("/",(req,res)=>{
+    try{
+        res.send("alll user data is collected by them ")
+    }catch(err){
+        res.status(401).send("Something went wrong please check")
+    }
 })
 
-app.get("/admin/getUserData", (req,res)=>{
+//handling error by using given argument of request err 
+// app.use("/", (err,req,res,next)=>{
+//     if(err){
+//         res.status(500).send("Please Check somethng went wrong")
+//     }
+//     res.send("all user are providing data with own no need to worry for now ")
+// })
 
-    res.send("All user data collected")
+app.listen(7777, ()=>{
+    console.log("Congratulation Guys we are doing very good Server is running properly")
 })
 
-app.get("/admin/deletedUser", (req,res)=>{
-    res.send("UserData deleted")
-})
 
-app.listen(7777,()=>{
-    console.log("successfully server is running ")
-})
+
+
+
+
+
+
+
+
+
+
+// const express = require("express")
+// const {adminAuth, userAuth} = require("./middleware/auth")
+// const app = express()
+
+// app.use("/admin",adminAuth)
+
+// app.get("/user",userAuth,(req, res)=>{
+//     res.send("Collection of userdata is collected")
+// })
+
+// app.get("/admin/getUserData", (req,res)=>{
+
+//     res.send("All user data collected")
+// })
+
+// app.get("/admin/deletedUser", (req,res)=>{
+//     res.send("UserData deleted")
+// })
+
+// app.listen(7777,()=>{
+//     console.log("successfully server is running ")
+// })
 
 
 
