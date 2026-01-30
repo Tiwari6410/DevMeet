@@ -20,7 +20,7 @@ try this regEx as well : /a/ (means : if routes contains a then it will work
 
     		: "/.*fly$/ (means : if routes contains fly at the end of the word it will work that routes )
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Query params (how we can send through api +++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Query params how we can send through api +++++++++++++
 
 http://localhost:3000/user?userid=101
 http://localhost:3000/user?userid=101&password="arvindpass"
@@ -48,3 +48,79 @@ userId : 101, name : "Arvind", password : "arvind1234"
 }
 
     									}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+How to create server in node js
+
+const express = require("express");
+
+const app = express();
+
+app.get("user", (req, res)=>{
+
+    res.send("route handler 2")
+
+})
+
+app.listen(8888, ()=>{
+
+    console.log("server is live on the port number 8888 …")
+
+})
+
+++++++++++++++++++++++++ handler inside handler ===================================================================
+
+app.get("user", (req, res, next)=>{
+
+  console.log("this is console")
+next();
+res.send("route handler 1")
+},
+(req,res)=>{
+
+res.send("second route handler"
+});
+
+app.listen(8888, ()=>{
+
+  console.log("server is live on the port number 8888 …")
+})
+
++++++++++++++++++++++++++++++++++++++++++++++++++++===================================================+++++++++
+
+app.use("/route",rh1, rh2 , rh3, rh4)
+
+app.use("/route", [rh1, rh2 , rh3, rh4])
+
+app.use("/route", [rh1, rh2] , rh3, rh4)
+
+app.use("user",(req,res)=>{
+console.log("handling the route user1")
+next();
+},(req, res,next)=>{
+console.log("handling the route user2")
+next();
+}, (req, res, next)=>{
+console.log("handling the route user3")
+}, (req, res,next)=>{
+console.log("handling the route user 4")
+res.send("handling response 4")
+);
+
+make sure we are not using next() in the last route handler other wise it will through an error
+
+we need to share "res" and we need to handle gracefully.
+
+++++++++++++++++++++++++=====================================================================================
+
+Hw
+
+multiple route handlers and play with the code
+next
+next function and errrors alogn with res.send()
+app.use("user", [rh1, rh3, rh3 ])
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++============================================================
+
+//Get / users => middleware chain => request handler.
