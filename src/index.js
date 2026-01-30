@@ -1,26 +1,65 @@
 const express = require("express")
-const app = express();
+const {adminAuth, userAuth} = require("./middleware/auth")
+const app = express()
 
+app.use("/admin",adminAuth)
 
-//middleware 
-app.use("/", (req, res, next)=>{
-    next()
+app.get("/user",userAuth,(req, res)=>{
+    res.send("Collection of userdata is collected")
 })
 
-app.get("/user", (req, res, next)=>{
-    console.log("i am from 1st request hander")                      //middleware
-    next();
-}, (req, res, next)=>{                                              //middleware 
-    console.log("i am from second request handler ")
-    next()
-}, (req, res, next)=>{
-    res.send("this is the final response of the request handler ") //request handler 
-    next()
+app.get("/admin/getUserData", (req,res)=>{
+
+    res.send("All user data collected")
 })
 
-app.listen("7777", ()=>{
-    console.log("program is suppose to done and finish this is the last") 
+app.get("/admin/deletedUser", (req,res)=>{
+    res.send("UserData deleted")
 })
+
+app.listen(7777,()=>{
+    console.log("successfully server is running ")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require("express")
+// const app = express();
+
+
+// //middleware 
+// app.use("/", (req, res, next)=>{
+//     next()
+// })
+
+// app.get("/user", (req, res, next)=>{
+//     console.log("i am from 1st request hander")                      //middleware
+//     next();
+// }, (req, res, next)=>{                                              //middleware 
+//     console.log("i am from second request handler ")
+//     next()
+// }, (req, res, next)=>{
+//     res.send("this is the final response of the request handler ") //request handler 
+//     next()
+// })
+
+// app.listen("7777", ()=>{
+//     console.log("program is suppose to done and finish this is the last") 
+// })
 
 
 
