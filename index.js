@@ -6,11 +6,11 @@ const userSchema = require("./src/models/user");
 const app = express();
 
 const userData = {
-    firstName : "john",
-    lastName : "doe",
-    age : 29,
-    email: "arvind@example.com",
-    password : "arvind@123"
+    firstName : "John",
+    lastName : "Deo",
+    age : 32,
+    email: "john@example.com",
+    password : "john@123"
 }
 app.post("/signup", async (req, res)=>{
     const user = new userSchema(userData);
