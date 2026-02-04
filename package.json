@@ -19,6 +19,8 @@
   "homepage": "https://github.com/Tiwari6410/DevMeet#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.5",
     "nodemon": "^3.1.11"
   }
 }
