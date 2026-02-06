@@ -5,15 +5,7 @@ const userSchema = require("./src/models/user");
 
 const app = express();
 
-app.use(express.json());
-
-// const userData = {
-//     firstName : "John",
-//     lastName : "Deo",
-//     age : 32,
-//     email: "john@example.com",
-//     password : "john@123"
-// }
+app.use(express.json()); // Middleware to parse JSON request bodies
 app.post("/signup", async (req, res)=>{
 
     const user = new userSchema(req.body);
