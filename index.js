@@ -5,6 +5,8 @@ const userSchema = require("./src/models/user");
 
 const app = express();
 
+app.use(express.json());
+
 const userData = {
     firstName : "John",
     lastName : "Deo",
@@ -13,13 +15,15 @@ const userData = {
     password : "john@123"
 }
 app.post("/signup", async (req, res)=>{
+
     const user = new userSchema(userData);
- try{
-    await user.save()
-    res.status(201).send({message : "user signed up successfully", user});
- }catch(err){
-    res.status(500).send({message : "error in signup", err} );
- }
+    console.log("userdetails", req.body);
+//  try{
+//     await user.save()
+//     res.status(201).send({message : "user signed up successfully", user});
+//  }catch(err){
+//     res.status(500).send({message : "error in signup", err} );
+//  }
 })
 
 connectDB().then(()=>{
