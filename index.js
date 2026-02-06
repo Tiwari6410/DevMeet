@@ -7,23 +7,23 @@ const app = express();
 
 app.use(express.json());
 
-const userData = {
-    firstName : "John",
-    lastName : "Deo",
-    age : 32,
-    email: "john@example.com",
-    password : "john@123"
-}
+// const userData = {
+//     firstName : "John",
+//     lastName : "Deo",
+//     age : 32,
+//     email: "john@example.com",
+//     password : "john@123"
+// }
 app.post("/signup", async (req, res)=>{
 
-    const user = new userSchema(userData);
+    const user = new userSchema(req.body);
     console.log("userdetails", req.body);
-//  try{
-//     await user.save()
-//     res.status(201).send({message : "user signed up successfully", user});
-//  }catch(err){
-//     res.status(500).send({message : "error in signup", err} );
-//  }
+ try{
+    await user.save()
+    res.status(201).send({message : "user signed up successfully", user});
+ }catch(err){
+    res.status(500).send({message : "error in signup", err} );
+ }
 })
 
 connectDB().then(()=>{
