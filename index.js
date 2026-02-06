@@ -6,6 +6,56 @@ const userSchema = require("./src/models/user");
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON request bodies
+
+// get user route
+app.get("/user", async(req, res)=>{
+    const userEmailId = req.body.email;
+   try{
+    const user = await userSchema.find({email : userEmailId});
+    if(user.length === 0 ){
+        res.status(404).send("user not found");
+    }else{
+        res.status(200).send(user);
+    }
+   }catch(err){
+    res.status(500).send("something went wrong");
+   }
+
+})
+
+//findOne user route
+app.get("/userone", async(req,res)=>{
+    const userEmailId = req.body.email;
+    try{
+        const user = await userSchema.findOne({email : userEmailId})
+        if(!user){
+            res.status(404).send("user not found")
+
+        }else{
+            res.status(200).send(user)
+        }
+    }catch(err){
+        res.status(500).send("something went wrong")
+    }
+})
+
+// feed user rout 
+app.get("/feed", async (req,res)=>{
+    try{
+        const users = await userSchema.find();
+        console.log("users", users);
+        if(users.length ===0 ){
+            res.status(404).send("no users found")
+
+        }else{
+            res.status(200).send(users)
+        }
+    }catch(err){
+        res.status(500).send("something went wrong")
+    }
+})
+
+// signup route
 app.post("/signup", async (req, res)=>{
 
     const user = new userSchema(req.body);
