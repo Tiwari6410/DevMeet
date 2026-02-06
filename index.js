@@ -55,6 +55,43 @@ app.get("/feed", async (req,res)=>{
     }
 })
 
+// Delete user route
+app.delete("/user", async(req,res)=>{
+    const userId = req.body.userId;
+    const userData = req.body;
+    console.log("userId", userId);
+    try{
+        const user = await userSchema.findByIdAndDelete({_id : userId},userData)
+        if(!user){
+            res.status(404).send("user not found")
+
+        }else{
+            res.status(200).send("user deleted successfully")
+        }
+    }catch(err){
+        res.status(500).send("something went wrong")
+    }
+})
+
+// update user using PATCH
+app.patch("/user", async(req,res)=>{
+    const userId = req.body.userId;
+    const userData = req.body;
+
+    console.log("userId", userId);
+    try{
+        const userUpdated = await userSchema.findByIdAndUpdate(userId, userData)
+        if(!userUpdated){
+            res.status(404).send("user not found ")
+        }else{
+            res.status(200).send("user updated successfully")
+        }
+    }catch(err){
+        res.status(500).send("something went wrong")
+    }
+})
+
+
 // signup route
 app.post("/signup", async (req, res)=>{
 

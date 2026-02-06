@@ -1,33 +1,47 @@
-Hw
-multiple route handlers and play with the code
-next
-next function and errrors alogn with res.send()
-app.use("user", [rh1, rh3, rh3 ])
-what is middleware
-how node js works behind the scenes
+<strong> Home Work </strong>
 
-install postman app and make workspace/collection > test api call
-write logic to handle GET, POST , PUT, DELETE, api calls and test them on postman
-explore routing and use of ?, +, (), *, in the routes
-use of regex in routes /a/ , /.*fly$/
-reading the query params in the routes
-reading the dynamic routes
- multiple route handlers - play with the codes
-next ()
-next function and errors along with res.send()
-app.use("route", rh, [rh2, rh3], rh4, rh5)
-what is a middleware? why do we need it ?
-how express js basically handle request behind the scenes
-difference app.use and app.all
-write a dummy auth middlware for admin
-write a dummy auth middlware for all user routes, excepts /user/login
-Error handling using app.use("/",(err, req, res, next)= {});
+- multiple route handlers and play with the code
+- next
+- next function and errrors alogn with res.send()
+- app.use("user", [rh1, rh3, rh3 ])
+- what is middleware
+- how node js works behind the scenes
 
-create a free cluster on MongoDb official website (Mongodb Atlas)
-Install mongoose library
-connect your application to the Database "connection-url"/devTinder
-Call the connectDB function and connect to database before starting application on 7777
-create a userSchema & user model
-create POST /signup API to add data to database
-push some documents using API calls from postman
-Error handling using try, catch
+- install postman app and make workspace/collection > test api call
+- write logic to handle GET, POST , PUT, DELETE, api calls and test them on postman
+- explore routing and use of ?, +, (), \*, in the routes
+- use of regex in routes /a/ , /.\*fly$/
+- reading the query params in the routes
+- reading the dynamic routes
+- multiple route handlers - play with the codes
+- next ()
+- next function and errors along with res.send()
+- app.use("route", rh, [rh2, rh3], rh4, rh5)
+- what is a middleware? why do we need it ?
+- how express js basically handle request behind the scenes
+- difference app.use and app.all
+- write a dummy auth middlware for admin
+- write a dummy auth middlware for all user routes, excepts /user/login
+- Error handling using app.use("/",(err, req, res, next)= {});
+
+- create a free cluster on MongoDb official website (Mongodb Atlas)
+- Install mongoose library
+- connect your application to the Database "connection-url"/devTinder
+- Call the connectDB function and connect to database before starting application on 7777
+- create a userSchema & user model
+- create POST /signup API to add data to database
+- push some documents using API calls from postman
+- Error handling using try, catch
+- js object vs json (difference )
+- add the express.json middleware to your app
+- Make your signup api dynamic to receive data from the end user.
+- user.findOne with the duplicate email ids, which object returned
+- API - Get user by email
+- API - Feed API - GET /feed - get all the users from the database
+- Create a API - Get /user by Id
+- create a delete user API
+- difference between PATCH AND PUT
+- API - update a user
+- Explore the mongoose Documnents for Model methods
+- What are options in a Model.findOneAndUpdate method.explore more about it
+- API - update the user with email ID
