@@ -80,7 +80,7 @@ app.patch("/user", async(req,res)=>{
 
     console.log("userId", userId);
     try{
-        const userUpdated = await userSchema.findByIdAndUpdate(userId, userData)
+        const userUpdated = await userSchema.findByIdAndUpdate({_id : userId}, userData,{ returnDocument : "after"})
         if(!userUpdated){
             res.status(404).send("user not found ")
         }else{
