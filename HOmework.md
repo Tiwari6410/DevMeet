@@ -45,3 +45,10 @@
 - Explore the mongoose Documnents for Model methods
 - What are options in a Model.findOneAndUpdate method.explore more about it
 - API - update the user with email ID
+- Create a custom validate function for gender.
+- Improve the DB scheam - PUT all appropriate validation on each field in schema
+- Add timestamps to the userSchema
+- Add API level validation on Patch request & Signup post api
+- Data sanitizing - Add API validation for each field
+- Install validator library
+- Explore validator library function and use validator funct for password, email , url
