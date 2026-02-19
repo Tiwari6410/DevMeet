@@ -1,12 +1,15 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./src/config/database");
 const userSchema = require("./src/models/user");
 const { validUserSignup } = require("./src/util/validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON request bodies
+app.use(cookieParser());
 
 // get user route
 app.get("/user", async (req, res) => {
@@ -144,14 +147,40 @@ app.post("/login", async (req, res) => {
     if (!user) {
       throw new Error("user not found");
     }
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      throw new Error("Invalid Credential");
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (isPasswordValid) {
+      const token = await jwt.sign({ _id: user._id }, "DevMeet$8970");
+      res.cookie("token", token);
+      res.send("Login successfully!!!!!s");
     } else {
-      res.status(200).send({ message: "User Logged in successfully", user });
+      throw new Error("Invalid Credentials");
     }
   } catch (err) {
-    throw new Error("ERROR : " + err.message);
+    res.status(400).send("ERROR : " + err.message);
+  }
+});
+
+app.post("/profile", async (req, res) => {
+  try {
+    const cookies = req.cookies;
+    const token = cookies.token;
+
+    if (!token) {
+      throw new Error("Invalid Token");
+    }
+
+    const decodedMessage = await jwt.verify(token, "DevMeet$8970");
+    const { _id } = decodedMessage;
+
+    const user = await userSchema.findOne({ _id: _id });
+    // console.log("user loged in ", user);
+    if (!user) {
+      throw new Error("user not found");
+    } else {
+      res.status(200).send(user);
+    }
+  } catch (err) {
+    res.status(400).send("ERROR : " + err.message);
   }
 });
 connectDB()
