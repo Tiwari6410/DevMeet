@@ -57,3 +57,14 @@
 - Install bcryptPackage.
 - Create PasswordHash using bcrypt.hash & save the user is excrupted password
 - create Login Api and validate the user
+
+- install cookie-parser
+- just sedn a dummy cookie to user
+- create GET / profile Api and check if you get the cookie back
+- install jsonwebtoken
+- IN login API, after email and password validation, creata JWT token and send it to user in
+- read the cookie inside your profile API and find the logged in user
+
+- userAuth Middleware
+- Add the userAuth middle ware in Profile API and a new sendConnection API
+- Set the expiry of jwt token and cookies to 7 days

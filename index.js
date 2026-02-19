@@ -5,6 +5,7 @@ const userSchema = require("./src/models/user");
 const { validUserSignup } = require("./src/util/validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { userAuth } = require("./src/middleware copy/auth");
 
 const app = express();
 
@@ -160,28 +161,17 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/profile", async (req, res) => {
+app.post("/profile", userAuth, async (req, res) => {
   try {
-    const cookies = req.cookies;
-    const token = cookies.token;
-
-    if (!token) {
-      throw new Error("Invalid Token");
-    }
-
-    const decodedMessage = await jwt.verify(token, "DevMeet$8970");
-    const { _id } = decodedMessage;
-
-    const user = await userSchema.findOne({ _id: _id });
-    // console.log("user loged in ", user);
-    if (!user) {
-      throw new Error("user not found");
-    } else {
-      res.status(200).send(user);
-    }
+    const user = req.user;
+    res.send(user);
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
+});
+
+app.post("/sendConnectionRequest", userAuth, async (req, res) => {
+  res.send(" connection request sent successfully");
 });
 connectDB()
   .then(() => {
