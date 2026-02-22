@@ -70,3 +70,6 @@
 - Set the expiry of jwt token and cookies to 7 days
 
 ![alt text](image.png)
+
+- create userSchema method to getJWT();
+- create userSchema method to comparepassword(passwordInputByUser)
