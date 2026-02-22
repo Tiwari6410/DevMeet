@@ -68,3 +68,5 @@
 - userAuth Middleware
 - Add the userAuth middle ware in Profile API and a new sendConnection API
 - Set the expiry of jwt token and cookies to 7 days
+
+![alt text](image.png)
