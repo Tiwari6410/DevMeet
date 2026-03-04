@@ -73,3 +73,11 @@
 
 - create userSchema method to getJWT();
 - create userSchema method to comparepassword(passwordInputByUser)
+
+- Explore tinder API's
+- Create a list all API you can think of in DevMeet.
+- Group multiple routes under respective reouters.
+- Read documentation for express.Router.
+- Create routes folder for managing auth, profile, request, routers.
+- create authRouter, profileRouter, requestRouter.
+- Import these routers in app.js
