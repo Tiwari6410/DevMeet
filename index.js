@@ -4,7 +4,7 @@ const connectDB = require("./src/config/database");
 const userSchema = require("./src/models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { userAuth } = require("./src/middleware copy/auth");
+const { userAuth } = require("./src/middleware/auth");
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 app.use(cookieParser());
 const signupRoute = require("./src/routes/auth");
 const profileRoute = require("./src/routes/profile");
-const userRoute = require("./src/routes/user");
+const userRoute = require("./src/routes/request");
 
 app.use("/", signupRoute);
 app.use("/", profileRoute);

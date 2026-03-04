@@ -22,6 +22,25 @@ const userAuth = async (req, res, next) => {
     res.status(401).send("ERROR : " + err.message);
   }
 };
+
+const validateEditUserProfile = (req, res, next) => {
+  const allowedFields = [
+    "firstName",
+    "lastName",
+    "age",
+    "gender",
+    "skills",
+    "about",
+    "photoUrl",
+  ];
+
+  const isEditAllowed = Object.keys(req.body).every((field) =>
+    allowedFields.includes(field),
+  );
+  return isEditAllowed;
+};
+
 module.exports = {
   userAuth,
+  validateEditUserProfile,
 };

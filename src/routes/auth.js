@@ -3,12 +3,12 @@ const authRouter = express.Router();
 const bcrypt = require("bcrypt");
 const userSchema = require("../models/user");
 const { validUserSignup } = require("../util/validator");
-const { userAuth } = require("../middleware copy/auth");
+const { userAuth } = require("../middleware/auth");
 const jwr = require("jsonwebtoken");
 
 // Importing necessary modules and middleware
 // Define the signup route
-authRouter.post("/signup", userAuth, async (req, res) => {
+authRouter.post("/signup", async (req, res) => {
   try {
     validUserSignup(req);
     const { firstName, lastName, email, age, gender, skills, about, password } =
@@ -36,7 +36,7 @@ authRouter.post("/signup", userAuth, async (req, res) => {
 });
 
 //Define the Login route
-authRouter.post("/login", userAuth, async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -52,13 +52,22 @@ authRouter.post("/login", userAuth, async (req, res) => {
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Cookie expires in 1 day
         httpOnly: true, // Cookie is only accessible through HTTP(S) requests
       });
-      res.send("Login successfully!!!!!s");
+      // res.send("Login successfully!!!!!s");
+      res.json({ message: "login successfully!!!!!", data: user });
     } else {
       throw new Error("Invalid Credentials");
     }
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
+});
+
+authRouter.post("/logout", async (req, res) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()), // Set the cookie to expire immediately
+  });
+
+  res.send(`Hey ${req.user.firstName}, you have been logged out successfylly`);
 });
 
 module.exports = authRouter;
